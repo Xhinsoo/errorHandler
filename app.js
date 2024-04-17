@@ -18,6 +18,11 @@ app.get("/error",  (req, res) => {
   chicken.fly();
 });
 
+//401 status you don't have authority
+app.get("/admin",(req,res)=>{
+    throw new AppError("You are not an admin!", 401)
+})
+
 // //this custom middleware handles the error from code above, instead of built-in EH
 // app.use((err, req, res, next) => {
 //   console.log("****************");
@@ -30,7 +35,7 @@ app.get("/error",  (req, res) => {
 
 //my customer ER takes the status code and message from AppError and handles it
 app.use((err, req, res, next) => {
-//some errors dont have status, so default value of 500
+//some errors don't' have status, so default value of 500
   const { status = 500, message ="oops!" } = err;
   res.status(status).send(message);
 });
