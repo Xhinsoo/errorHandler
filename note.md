@@ -7,6 +7,8 @@ If you pass anything to next(e), express regards current request as error and wi
 
 
 --
+For synchronous code invoked by route handler and middleware, express default express handler will catch them. 
+
 For errors returned from asynchronous () invoked by route handler and middleware, you must pass them to the next(e) function where express will catch and process them.
 
 for e.g
@@ -17,3 +19,6 @@ if(!product){
 async route handler can have 3 parameters async (req,res,next). 
 next(e): will trigger the EH
 next(): will trigger next middleware
+
+---
+mongoose async error can be handled by try and catch{e} block, and pass them to next(e)

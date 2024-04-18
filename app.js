@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 app.get("/secret/", verifyPassword, (req,res)=>{
 res.send("this is secret!")
-}
+});
         
 //throwing error 
 app.get("/error",  (req, res) => {
