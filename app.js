@@ -11,9 +11,16 @@ const verifyPassword = (req, res, next) => {
   throw new AppError("password required!!", 401);
 };
 
+
 app.get("/", (req, res) => {
   res.send("hello");
 });
+
+app.get("/secret/", verifyPassword, (req,res)=>{
+res.send("this is secret!")
+}
+        
+//throwing error 
 app.get("/error",  (req, res) => {
   chicken.fly();
 });
