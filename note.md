@@ -22,3 +22,18 @@ next(): will trigger next middleware
 
 ---
 mongoose async error can be handled by try and catch{e} block, and pass them to next(e)
+
+have different type of erros:
+castError
+validationError
+error
+--
+wrapAsync(fn){
+return function(req,res,next){
+	fn(req,res,next).catch(e=>next(e))
+}
+
+wrapAsync returns a new function that invokes whatever we pass as parameter. 
+for instance in the above ex, fn is passed.So the newly returned (), invokes that fn.
+
+fn(req,req,res) and attaches catch method to catch any error and pass it to next(e).
