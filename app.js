@@ -11,6 +11,12 @@ const verifyPassword = (req, res, next) => {
   throw new AppError("password required!!", 401);
 };
 
+const catchAsync = (fn)=>{
+  return function (req,res,next) {
+    fn(req,res,next).catch{e=>next(e) }
+
+  }};
+
 
 app.get("/", (req, res) => {
   res.send("hello");
